@@ -35,6 +35,6 @@ exports.exec = function(message) {
       });
     });
   } else { // requested klas role doesnt exist:
-    message.channel.send("Die klas lijkt niet te bestaan.");
+    message.channel.send("Die klas bestaat niet. Typ `!klas` zonder klas erachter om een lijst van klassen te krijgen.");
   }
 }
