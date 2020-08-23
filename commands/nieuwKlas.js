@@ -16,7 +16,7 @@ exports.exec = function(message) {
     fs.writeFileSync("data/klassen.json", JSON.stringify(klasData));
     message.channel.send("De klas bestond al in Discord, maar stond nog niet geregistreerd. De rol is nu geregistreerd en gekoppeld aan de bestaande Discord rol.");
   } else {
-    message.guild.roles.create({data:{name:klasName},reason:`Klas gemaakt namens ${message.author.tag}`}).then(function(newKlasRole) {
+    message.guild.roles.create({data:{name:klasName,permissions:0},reason:`Klas gemaakt namens ${message.author.tag}`}).then(function(newKlasRole) {
       klasData[klasName] = {"id":newKlasRole.id,"name":klasName};
       fs.writeFileSync("data/klassen.json", JSON.stringify(klasData));
       message.channel.send("De nieuwe klas is aangemaakt, en leerlingen kunnen het `!klas` commando gebruiken om zich aan de klas toe te voegen.");
