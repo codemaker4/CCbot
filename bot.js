@@ -14,13 +14,13 @@ client.on('message', message => {
     // console.log("recieved own message", message.content);
     return;
   }
-  if (message.content[0] == "!") {
+  if (message.guild && message.content[0] == "!") { // ignore DMs and non command messages.
     try {
-      command.doCommand(message);
-    } catch(error) {
+      command.doCommand(message); // do the command
+    } catch(error) { // if error on command
       console.log(`Error on executing command:\n${message.content}\nSent by ${message.author.tag} with id ${message.author}\nhere is the error:\n${error}`)
       message.channel.send("Er is een fout opgetreden bij het uitvoeren van het commando:\n```" + error + "```").catch(function(errorMSG) {
-        message.channel.send("Er is een fout opgetreden bij het uitvoern van het commando.");
+        message.channel.send("Er is een fout opgetreden bij het uitvoern van het commando."); // if error on sending error. Usually if error is too long for Discord.
       })
     }
   }
