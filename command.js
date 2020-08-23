@@ -1,7 +1,8 @@
 var commands = {
   help: require('./commands/help.js'),
   nieuwklas: require("./commands/nieuwKlas.js"),
-  verwijderklas: require("./commands/verwijderKlas.js")
+  verwijderklas: require("./commands/verwijderKlas.js"),
+  klas: require("./commands/klas.js")
 };
 
 exports.doCommand = function(message) {
