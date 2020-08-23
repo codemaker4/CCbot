@@ -1,5 +1,6 @@
 var commands = {
-  help: require('./commands/help.js')
+  help: require('./commands/help.js'),
+  nieuwklas: require("./commands/nieuwKlas.js")
 };
 
 exports.doCommand = function(message) {

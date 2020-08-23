@@ -18,7 +18,7 @@ client.on('message', message => {
     try {
       command.doCommand(message); // do the command
     } catch(error) { // if error on command
-      console.log(`Error on executing command:\n${message.content}\nSent by ${message.author.tag} with id ${message.author}\nhere is the error:\n${error}`)
+      console.log(`Uncaught error on executing command:\n${message.content}\nSent by ${message.author.tag} with id ${message.author}\nhere is the error:\n${error}`)
       message.channel.send("Er is een fout opgetreden bij het uitvoeren van het commando:\n```" + error + "```").catch(function(errorMSG) {
         message.channel.send("Er is een fout opgetreden bij het uitvoern van het commando."); // if error on sending error. Usually if error is too long for Discord.
       })
