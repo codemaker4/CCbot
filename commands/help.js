@@ -1,3 +1,5 @@
+exports.normalUserAllowed = true;
+
 exports.exec = function(message) {
   message.channel.send(exports.helpString);
 }

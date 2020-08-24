@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+exports.normalUserAllowed = false;
+
 exports.exec = function(message) {
   var klasName = message.content.substring("!nieuwKlas ".length).toLowerCase(); // remove the !nieuwKlas at the start and convert to lowercase.
   var klasData = JSON.parse(fs.readFileSync("data/klassen.json"));
