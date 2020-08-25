@@ -7,8 +7,14 @@ exports.exec = function(message) {
   var klasData = JSON.parse(fs.readFileSync("data/klassen.json"));
   if (klasName.length == 0) { // if no klas was specified, so !klas was type but no klas was mentioned.
     var klasListTXT = "Hier is een lijs van klassen met de commandos om in die klas te gaan:";
+    var klasCount = 0;
     for (var klas in klasData) {
       klasListTXT += "\n`!klas " + klas + "`";
+      klasCount ++;
+    }
+    if (klasCount == 0) {
+      message.channel.send("Er staan geen klassen geregistreerd in de bot. Een botadmin moet `!nieuwKlas <klasNaam>` gebruiken om nieuwe klassen aan te maken en te koppellen aan bestaande of nieuwe Discord rollen.");
+      return;
     }
     message.channel.send(klasListTXT).catch(function(error) {
       message.channel.send("Er is een fout opgetreden bij het versturen van de lijst met klassen:")
