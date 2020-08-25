@@ -5,10 +5,14 @@ exports.normalUserAllowed = true;
 exports.exec = function(message) {
   var klasName = message.content.substring("!klas ".length).toLowerCase(); // remove the !nieuwKlas at the start and convert to lowercase.
   var klasData = JSON.parse(fs.readFileSync("data/klassen.json"));
+  if (!klasData.studentSlefAssignAllowed) {
+    message.channel.send("leerlingen kunnen (tijdelijk) niet zelf hun klas aanpassen.");
+    return;
+  }
   if (klasName.length == 0) { // if no klas was specified, so !klas was type but no klas was mentioned.
     var klasListTXT = "Hier is een lijs van klassen met de commandos om in die klas te gaan:";
     var klasCount = 0;
-    for (var klas in klasData) {
+    for (var klas in klasData.klassen) {
       klasListTXT += "\n`!klas " + klas + "`";
       klasCount ++;
     }
@@ -21,11 +25,11 @@ exports.exec = function(message) {
     });
     return;
   }
-  if (klasData[klasName]) {
+  if (klasData.klassen[klasName]) {
     var klasRolesAlreadyOwned = [];
     var klassenIDs = [];
-    for (var klas in klasData) {
-      klassenIDs.push(klasData[klas].id);
+    for (var klas in klasData.klassen) {
+      klassenIDs.push(klasData.klassen[klas].id);
     }
     message.member.roles.cache.forEach(function(role) {
       if (klassenIDs.includes(role.id)) { // if member already has klas role
@@ -34,7 +38,7 @@ exports.exec = function(message) {
         });
       }
     });
-    message.member.roles.add(klasData[klasName].id).then(function() {
+    message.member.roles.add(klasData.klassen[klasName].id).then(function() {
       message.channel.send("Je bent aan de klas toegevoegd.");
     }).catch(function(error) {
       console.log(`Error in adding klas role to member on executing command:\n${message.content}\nSent by ${message.author.tag} with id ${message.author}\nhere is the error:\n${error}`);
