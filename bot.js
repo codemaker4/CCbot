@@ -14,6 +14,9 @@ client.on('message', message => {
     // console.log("recieved own message", message.content);
     return;
   }
+
+  if (message.content.length == 1) return; // ignore messages that are only 1 characters long
+
   if (message.guild && message.content[0] == "!") { // ignore DMs and non command messages.
     try {
       command.doCommand(message); // do the command
