@@ -26,4 +26,4 @@ client.on('message', message => {
   }
 });
 
-client.login(require("./auth.json").token);
+client.login(require("./auth.json").token_real);

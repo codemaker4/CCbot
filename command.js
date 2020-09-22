@@ -6,7 +6,9 @@ var commands = {
   zetklastoestemming: require("./commands/zetKlasToestemming.js")
 };
 
-const botAdminRole = "747357323152064632";
+// test: 747357323152064632
+// real: 747804849219043419
+const botAdminRole = "747804849219043419";
 
 exports.doCommand = function(message) {
   var command = message.content.split(" ")[0].substring(1).toLowerCase() // split the by spaces, take the first 'word',remove the ! at the beginning and convert to lowercase.
