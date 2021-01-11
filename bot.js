@@ -4,6 +4,8 @@ var botID;
 
 const command = require('./command.js');
 
+const antispam = require('./antispam.js');
+
 client.once('ready', () => {
 	console.log('Ready!');
   botID = client.user.id;
@@ -14,6 +16,8 @@ client.on('message', message => {
     // console.log("recieved own message", message.content);
     return;
   }
+
+  antispam.logMessage(message);
 
   if (message.content.length == 1) return; // ignore messages that are only 1 characters long
 
@@ -29,4 +33,4 @@ client.on('message', message => {
   }
 });
 
-client.login(require("./auth.json").token_real);
+client.login(require("./auth.json").token_test);
