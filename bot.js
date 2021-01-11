@@ -33,4 +33,4 @@ client.on('message', message => {
   }
 });
 
-client.login(require("./auth.json").token_test);
+client.login(require("./auth.json").token_real);
