@@ -17,7 +17,9 @@ client.on('message', message => {
     return;
   }
 
-  antispam.logMessage(message);
+  if (message.guild) {
+    antispam.logMessage(message);
+  }
 
   if (message.content.length == 1) return; // ignore messages that are only 1 characters long
 
