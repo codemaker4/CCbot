@@ -13,7 +13,7 @@ client.once('ready', () => {
 
 client.on('message', message => {
   if (message.author.id == botID) {
-    // console.log("recieved own message", message.content);
+    console.log("recieved own message", message.content);
     return;
   }
 

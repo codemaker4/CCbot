@@ -10,7 +10,7 @@ exports.exec = function(message) {
     return;
   }
   if (klasName.length == 0) { // if no klas was specified, so !klas was type but no klas was mentioned.
-    var klasListTXT = "Hier is een lijs van klassen met de commandos om in die klas te gaan:";
+    var klasListTXT = "Hier is een lijst met klassen met de commandos om in die klas te gaan:";
     var klasCount = 0;
     for (var klas in klasData.klassen) {
       klasListTXT += "\n`!klas " + klas + "`";
@@ -21,7 +21,10 @@ exports.exec = function(message) {
       return;
     }
     message.channel.send(klasListTXT).catch(function(error) {
-      message.channel.send("Er is een fout opgetreden bij het versturen van de lijst met klassen:")
+      message.channel.send("Er is een fout opgetreden bij het versturen van de lijst met klassen:\n```" + error + "```").catch(function(errorMSG) {
+        message.channel.send("Er is een fout opgetreden bij het versturen van de lijst met klassen.");
+        console.log("Er is een fout opgetreden bij het versturen van de lijst met klassen:\n" + error + "\n en een fout bij het verzenden van de error:\n" + errorMSG);
+      });
     });
     return;
   }
